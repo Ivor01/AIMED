@@ -1,0 +1,138 @@
+[
+    {
+    "audio":"audio/studio_doctor/Studio_Doctor_Monologue1.wav",
+    "text":"što znači, da bi mi mogli na elektronski način, naručivati pacijente na preglede, primati nalaze liječnika iz bolnica ili radiološke pretrage i nalaze u naše ordinacije direktno."
+    },
+    {"audio":"audio/studio_doctor/Studio_Doctor_Monologue2.wav",
+    "text":"međutim, ako imate previše pacijenata u jednom danu koji vas traže kao kontakt, normalno je da ne stignete sve odmah odgovoriti."
+    },
+    {"audio":"audio/studio_doctor/Studio_Doctor_Monologue3.wav",
+    "text":"s obzirom da je i za vrijeme epidemije bilo dogovoreno, odnosno određeno od strane kriznog stožera, da se fizički dolasci u ordinacije smanje."
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue1.wav",
+    "text":"nakon što smo pogledali puls, izmjerili tlak i provjerili disanje, sada ćemo pregledati dišni sustav. molim vas pružite mi ruke."
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue2.wav",
+    "text":"boli li vas ovo? ne. a ovo? ne. a ovo ? ne"
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue3.wav",
+    "text":"pogledajte gore. u redu, puhnite kroz nos. drugi."
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue.wav4",
+    "text":"otvorite usta, recite a. podignite jezik. u redu"
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue5.wav",
+    "text":"pogledat ćemo limfne čvorove na vratu. pogledat ćemo štitnjaču sa stražnje strane. progutajte malo. u redu."
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue6.wav",
+    "text":"sada ćemo malo pregledati prsni koš. malo se okrenite. u redu. boli li vas ovo? ne. a ovo? ne."
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue7.wav",
+    "text":"duboko udahnite. izdahnite. u redu"
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue8.wav",
+    "text":"molim vas zagrlite ruke ispred sebe. molim vas dišite duboko na usta."
+    },
+    {"audio":"audio/examinationRespiratory_docPat/examinationRespiratory_DoctorNPatient_Dialogue9.wav",
+    "text":"okrenite se prema naprijed. dišite duboko opet, molim vas."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue1.wav",
+    "text":"mogu li vas zamoliti da vam pregledam ruke. molim vas ispružite ih. okrenite ih molim vas."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue2.wav",
+    "text":"s obzirom da smo već izmjerili puls i tlak, sada bih prešla na pregled glave. mogu li vas zamoliti da pregledate prema gore. isplazite molim vas jezik. sada ga podignite prema gore. dobro. sada ćemo provjeriti puls na vratu."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue3.wav",
+    "text":"poslušat ćemo puls na vratu. mogu li vas zamoliti da prestanete disati. opet prestanite disati. sve je u redu."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue4.wav",
+    "text":"mogu li vas sad zamoliti da skinete košulju i legnete ovdje na krevet. sada ćemo vam malo pogledati prsni koš. pa ćemo opipati puls."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue5.wav",
+    "text":"boli li vas ovo? ne. a ovo? ne. poslušat ćemo vam srce."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue6.wav",
+    "text":"da pogledamo otiču li vam noge. zamolit ću vas da ustanete. boli li vas ovo? ne. okrenite se molim  vas. podignite ruke. spustite ruke."
+    },
+    {"audio":"audio/examinationCardio_docPat/Examination2_DoctorNPatient_Dialogue7.wav",
+    "text":"poslušala bih vam pluća. zamolit ću vas da duboko dišete na usta."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue1.wav",
+    "text":"koji je vaš datum rođenja? deseti treći tisuću devetsto devedeset i četvrte godine. što vas dovodi k meni, kakve tegobe imate?"
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue2.wav",
+    "text":"pa u zadnje vrijeme kada radim neki teži fizički posao ili kada se penjem uz stepenice imam problema da se prebrzo uspušem i treba mi nekoliko minuta da bi me to prošlo i da bi mi bilo lakše. inače me bol u prsima ubija."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue3.wav",
+    "text":"gdje vas točno boli, možete li mi pokazati? evo ovako. kada je započela bol, unatrag koliko vremena? pa u zadnjih šest mjeseci je počela, ali svaki sljedeći put i svakih mjesec dana sve je gore i gore."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue4.wav",
+    "text":"koliko se često tegobe javljaju? svaki put kada imam neki jači fizički posao. na primjer kada idete uz stepenice? sa, više od drugog kata uvijek ili kada nosim neki teški teret ili kada pokušavam trčati."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue5.wav",
+    "text":"kako bi ste opisali tu bol? osjećam kao da me pritišće u prsima i steže. dobro, jeste li pokušali uzimati kakve lijekove da vam se to smiri, kakvu terapiju? nisam još ništa uzimao."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue6.wav",
+    "text":"jeste li dosada išta bolovali u životu, imate li kakvih kroničnih bolesti? imao sam povišene masnoće i dijagnosticiran mi je visok tlak."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue7.wav",
+    "text":"uzimate li kakve lijekova? da, za tlak i za masnoće. znate li možda kako se zovu ti lijekovi? nisam sad siguran. sve u redu. imate li kakvih alergija na lijekove? nemam."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue8.wav",
+    "text":"pušite li? da. koliko na dan cigareta? jednu kutiju već 20 godina. oko 20 cigareta znači. dobro, konzumirate li alkohol? ma samo možda bevandu poslije ručka."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue9.wav",
+    "text":"moram vas pitati neugodno pitanje, konzumirate  li slučajno neke droge? ne, ne. dobro, čime se bavite, što radite? građevinski radnik."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue10.wav",
+    "text":"vaši roditelji, kakvog su zdravlja? otac mi je umro, ima dva mjeseca od infarkta. moja sućut za vašega oca, a vaša majka? ona boluje od šećerne bolesti i na inzulinu je već sedamdeset godina."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue11.wav",
+    "text":"vaši braće i sestre, imaju li oni kakvih tegoba? sestru nemam, a brat ima plućni i krvni tlak."
+    },
+    {"audio":"audio/anamnesis_docPat/Anamnesis_DoctorNPatient_Dialogoue12.wav",
+    "text":"sada, ako se vi slažete, ja bi pristupila pregledu. poslušala bih vam srce, pluća, izmjerila tlak."
+    },
+    {"audio":"audio/examinationAbdomninal_docPat/Examination3_DoctorNPatient_Dialogue1.wav",
+    "text":"sada ćemo pregledati trbuh, mogu li vas zamoliti da stavite ruke uz tijelo, savijete noge u koljenu. okrenite malo glavu prema tamo. boli li vas gdje u trbuhu? evo ovdje tu."
+    },
+    {"audio":"audio/examinationAbdomninal_docPat/Examination3_DoctorNPatient_Dialogue2.wav",
+    "text":"to vas boli? da. ovdje? da. mogu li vas zamoliti da duboko udahnete i izdahnete. ajmo opet"
+    },
+    {"audio":"audio/narration_Doctor/Narration_Doctor_Monologue1.wav",
+    "text":"za vađenje krvi, morate biti natašte i morate biti dobro hidrirani. to je važno zbog volumena krvnih žila i da se lakše izvadi krv. sljedeći korak je EKG."
+    },
+    {"audio":"audio/narration_Doctor/Narration_Doctor_Monologue2.wav",
+    "text":"dolazite na ultrazvuk abdomena, za to također trebate biti natašte i preporuka je da ne jedete grahorice, mliječne proizvode odnosno ništa što napuhuje. ali morate biti punog mjehura zbog bolje projekcije organa."
+    },
+    {"audio":"audio/narration_Doctor/Narration_Doctor_Monologue3.wav",
+    "text":"kod žena radimo ultrazvuk dojki za što je dobro donijeti sa sobom stare nalaze ultrazvuk ili mamografije. prva mamografija obavlja se s 40 godina, svaka sljedeća za dvije godine, a po preporuci liječnika češće, svaku godinu dana."
+    },
+    {"audio":"audio/narration_Doctor/Narration_Doctor_Monologue4.wav",
+    "text":"na ginegološki pregled najbolje je doći praznog mjehura. on uključuje papatest, ultrazvuk i razgovor s liječnicom."
+    },
+    {"audio":"audio/epilepsy_doc/Epilepsy_Doctor_Monologue1.wav",
+    "text":"ako bolesnik doživi napadaj koji prođe u roku minute, u redu, ima poznatu epilepsiju, u tom trenutku treba bolesnika poleći na pod, ako već sam nije pao. osigurati mu dovoljno prostora jer taj Grad Mal napad je jako impresivan, pacijent se grči cijelim tijelom, izvija."
+    },
+    {"audio":"audio/epilepsy_doc/Epilepsy_Doctor_Monologue2.wav",
+    "text":"ekstremitetima se nekontrolirano kreće. najveći rizik tu je da on ne udari u nešto, da padne, ne slomi i ne udari glavu, odnosno, recimo, neke traume. "
+    },
+    {"audio":"audio/stroke_doc/Stroke_Doctor_Monologue1.wav",
+    "text":"ako vidimo asimetriju lica. A ili arm, odnosno, slabost ruke ili jel, jedne strane tijela. S speech, odnosno govor, smetnje u govoru i T, znači time, odnosno, da je vrijeme važno i da moramo znati kad je moždani udar nastupio i s druge strane da je vrijeme važno da što prije osoba s moždanim udarom dođe u bolnicu kako bi joj se mogla dati prava terapija."
+    },
+    {"audio":"audio/stroke_doc/Heart_Doctor_Monologue1.wav",
+    "text":"u velikom broju slučajeva bit će loša prehrana dugi vremenski period, prekomjerna tjelesna težina, recimo dijabetes, visoki krvni tlak, čak i genetska predispozicija i puno toga, recimo, sjedilački način života može dakle potencirati da osoba dobije srčani udar."
+    },
+    {"audio":"audio/stroke_doc/Heart_Doctor_Monologue2.wav",
+    "text":"kada razmišljamo o srčanom udaru, nastaje kada nema dovoljno protoka krvi u područje srčanog mišića."
+    },
+    {"audio":"audio/narration_bloodPres/Narration2_Doctor_Monologue1.wav",
+    "text":"uređaj za mjerenje krvnog tlaka pokazat će dvije vrijednosti, sistolički tlak, to je viša vrijednost, a dijastolički tlak to je niža vrijednost."
+    },
+    {"audio":"audio/narration_bloodPres/Narration2_Doctor_Monologue2.wav",
+    "text":"prema stručnim smjernicama, rezultati mjerenja mogu biti: normalne vrijednosti, sistolički je ispod sto dvadeset, a dijastolički ispod osamdeset."
+    },
+    {"audio":"audio/narration_bloodPres/Narration2_Doctor_Monologue3.wav",
+    "text":"povišene vrijednosti, sistolički između sto dvadeset i sto trideset, a dijastolički ispod osamdeset. hipertenzija prvog stupnja, sistolički između sto trideset i sto četrdeset, dok je dijastolički između osamdeset i devedeset. "
+    }
+]
