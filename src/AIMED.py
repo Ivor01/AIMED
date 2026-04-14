@@ -199,6 +199,7 @@ def spremi_dokument():
     messagebox.showinfo("Spremljeno", f"Dokument spremljen kao:\n{filename}")
 
 def transkribiraj_manual():
+    global uploaded_file
     prompt_vars = [department_var.get(),theme_var.get()]
     initial_prompt = pB.build_initial_prompt(prompt_vars[0],prompt_vars[1])
     audio_file = get_audio_file()
@@ -207,6 +208,7 @@ def transkribiraj_manual():
         return
     
     transcript, elapsed = transcribe_file(audio_file,initial_prompt)
+    uploaded_file = None
     transcript_box.delete("1.0", tk.END)
     transcript_box.insert(tk.END, transcript)
     status_label.config(text=elapsed)
