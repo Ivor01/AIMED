@@ -23,7 +23,7 @@ Obuhvaća zahtjeve sustava za Windows te korištenje drugih tkinter biblioteka z
  
 ## Instalacija
 
-git clone https://github.com/[UBACI]
+git clone https://github.com/Ivor01/AIMED
 cd AIMED[PROVJERI]
 pip install -r requirements.txt
 
