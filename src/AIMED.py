@@ -12,6 +12,7 @@ from faster_whisper import WhisperModel
 import librosa
 import time
 import promptBuilder as pB
+import noiseReduce as nR
 
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
@@ -203,11 +204,16 @@ def transkribiraj_manual():
     prompt_vars = [department_var.get(),theme_var.get()]
     initial_prompt = pB.build_initial_prompt(prompt_vars[0],prompt_vars[1])
     audio_file = get_audio_file()
+    transcript_box.insert(tk.END, audio_file)
     if not audio_file:
         messagebox.showwarning("Greška", "Nema snimljenog ili učitanog audio zapisa")
         return
-    
+    nR.preprocess_with_ffmpeg(audio_file)
+    filename = os.path.basename(audio_file)
+    name, ext = os.path.splitext(filename)
+    audio_file = name + "_cleaned" + ext
     transcript, elapsed = transcribe_file(audio_file,initial_prompt)
+    os.remove(audio_file)
     uploaded_file = None
     transcript_box.delete("1.0", tk.END)
     transcript_box.insert(tk.END, transcript)
