@@ -1,3 +1,40 @@
+import warnings
+
+warnings.filterwarnings(
+    "ignore",
+    message="torchcodec is not installed correctly.*"
+)
+
+warnings.filterwarnings(
+    "ignore",
+    message="TensorFloat-32.*"
+)
+
+warnings.filterwarnings(
+    "ignore",
+    category=UserWarning,
+    module=r"pyannote\.audio\.core\.io"
+)
+
+warnings.filterwarnings(
+    "ignore",
+    category=UserWarning,
+    module=r"torch\.backends\.cuda\.__init__"
+)
+
+warnings.filterwarnings(
+    "ignore",
+    message=r".*degrees of freedom is <= 0.*",
+    category=UserWarning
+)
+
+warnings.filterwarnings(
+    "ignore",
+    message=r".*Please use the new API settings to control TF32 behavior.*",
+    category=UserWarning
+)
+
+
 import os
 import json
 import argparse
