@@ -11,8 +11,9 @@ import torch
 from faster_whisper import WhisperModel
 import librosa
 import time
-import promptBuilder as pB
-import noiseReduce as nR
+import modules.promptBuilder as pB
+import modules.noiseReduce as nR
+from modules.diarizer import SpeakerDiarizer as sD
 
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
@@ -94,7 +95,11 @@ def transcribe_file(audio_path, prompt):
     elapsed = time.time() - start_time
     elapsed_text = f"Vrijeme transkripcije: {elapsed:.2f} sekundi"
     return segments, elapsed_text
-
+# ---------------- DIARIZATION --------------------
+def diarize(audio_file):
+    diarizer = sD()
+    segs = diarizer.diarize(audio_file)
+    return segs
 # ---------------- AUDIO RECORDING ----------------
 def record_thread():
     def callback(indata, frames, time_info, status):
@@ -217,9 +222,10 @@ def transkribiraj_manual():
     name, ext = os.path.splitext(filename)
     audio_file = name + "_cleaned" + ext
     transcript, elapsed = transcribe_file(audio_file,initial_prompt)
-    
     #Kraj modula 2 - provesti dijarizaciju prije transkripta
     #Modul 3 
+    diarized_segs  = diarize(audio_file)
+    print(diarized_segs)
     #Nakon dijarizacije itd pretvaramo segmente u tekst za ispis
     os.remove(audio_file)
     uploaded_file = None

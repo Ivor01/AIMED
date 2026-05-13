@@ -161,3 +161,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#korištenje u terminalu python diar_test.py processed.wav
+# možemo dodati: --output filepath, --device cpu/gpu i kasnije broj govornika
+'''Iz drugog programa: importamo klasu SpeakerDiarizer
+    diarizer = SpeakerDiarizer(output=...,device=...,min_speakers=...)
+    segments = diarizer.diarize(audio_file)
+'''
