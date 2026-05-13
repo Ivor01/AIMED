@@ -63,6 +63,20 @@ def format_time(seconds):
 def normalize_text(text):
     return text.replace("  ", " ").strip()
 
+def transcript_to_text(segments):
+    lines = []
+    for seg in segments:
+        start = format_time(seg.start)
+        end = format_time(seg.end)
+        text = seg.text.strip()
+        for wrong, correct in TERM_CORRECTIONS.items():
+            text = text.replace(wrong, correct)
+        text = normalize_text(text)
+        lines.append(f"[{start} → {end}] {text}")
+    transcript_text = "\n".join(lines)
+    return transcript_text
+
+
 def transcribe_file(audio_path, prompt):
     global transcript_text
     if audio_path is None:
@@ -77,19 +91,9 @@ def transcribe_file(audio_path, prompt):
         suppress_tokens=SUPPRESS_TOKENS,
         initial_prompt = prompt
     )
-    lines = []
-    for seg in segments:
-        start = format_time(seg.start)
-        end = format_time(seg.end)
-        text = seg.text.strip()
-        for wrong, correct in TERM_CORRECTIONS.items():
-            text = text.replace(wrong, correct)
-        text = normalize_text(text)
-        lines.append(f"[{start} → {end}] {text}")
-    transcript_text = "\n".join(lines)
     elapsed = time.time() - start_time
     elapsed_text = f"Vrijeme transkripcije: {elapsed:.2f} sekundi"
-    return transcript_text, elapsed_text
+    return segments, elapsed_text
 
 # ---------------- AUDIO RECORDING ----------------
 def record_thread():
@@ -213,8 +217,13 @@ def transkribiraj_manual():
     name, ext = os.path.splitext(filename)
     audio_file = name + "_cleaned" + ext
     transcript, elapsed = transcribe_file(audio_file,initial_prompt)
+    
+    #Kraj modula 2 - provesti dijarizaciju prije transkripta
+    #Modul 3 
+    #Nakon dijarizacije itd pretvaramo segmente u tekst za ispis
     os.remove(audio_file)
     uploaded_file = None
+    transcript = transcript_to_text(transcript)
     transcript_box.delete("1.0", tk.END)
     transcript_box.insert(tk.END, transcript)
     status_label.config(text=elapsed)

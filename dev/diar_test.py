@@ -43,10 +43,22 @@ import soundfile as sf
 import torch
 import torchaudio
 from pyannote.audio import Pipeline
-
+from typing import Optional
 
 class SpeakerDiarizer:
-    def __init__(self, hf_token: str, device: str = "auto"):
+    def __init__(
+        self,
+        hf_token: Optional[str] = None,
+        device: str = "auto"
+    ):
+        self.hf_token = hf_token or os.getenv("HF_TOKEN")
+
+        if not self.hf_token:
+            raise RuntimeError(
+                "HF_TOKEN is not set. Set it as an environment variable "
+                "or pass hf_token directly to SpeakerDiarizer."
+            )
+        
         self.pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1",
             token=hf_token
@@ -101,27 +113,51 @@ class SpeakerDiarizer:
             })
 
         return segments
+    
+    def diarize_to_file(self, audio_path: str, output_path: str):
+        segments = self.diarize(audio_path)
+
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(segments, f, ensure_ascii=False, indent=2)
+
+        return segments
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("audio_path")
-    parser.add_argument("--output", default="diarization_segments.json")
+    parser = argparse.ArgumentParser(
+        description="Run speaker diarization using pyannote.audio."
+    )
+
+    parser.add_argument(
+        "audio_path",
+        help="Path to input audio file, e.g. processed.wav"
+    )
+
+    parser.add_argument(
+        "--output",
+        default="diarization_segments.json",
+        help="Path to output JSON file"
+    )
+
+    parser.add_argument(
+        "--device",
+        default="auto",
+        choices=["auto", "cpu", "cuda"],
+        help="Device to use"
+    )
+    
     args = parser.parse_args()
 
-    hf_token = os.getenv("HF_TOKEN")
+    diarizer = SpeakerDiarizer(
+        device=args.device
+    )
 
-    if not hf_token:
-        raise RuntimeError("HF_TOKEN nije postavljen.")
+    segments = diarizer.diarize_to_file(
+        audio_path=args.audio_path,
+        output_path=args.output
+    )
 
-    diarizer = SpeakerDiarizer(hf_token=hf_token)
-    segments = diarizer.diarize(args.audio_path)
-
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(segments, f, ensure_ascii=False, indent=2)
-
-    print(f"Spremljeno {len(segments)} segmenata u {args.output}")
-
+    print(f"Saved {len(segments)} segments to {args.output}")
 
 if __name__ == "__main__":
     main()
