@@ -13,7 +13,7 @@ import librosa
 import time
 import modules.promptBuilder as pB
 import modules.noiseReduce as nR
-from modules.diarizer import SpeakerDiarizer as sD
+from modules.diarizer import SpeakerDiarizer as sDi
 from modules.speaker_assignment import assign_segments_speakers
 
 # ---------------- BOJE ----------------
@@ -98,7 +98,7 @@ def transcribe_file(audio_path, prompt):
     return segments, elapsed_text
 # ---------------- DIARIZATION --------------------
 def diarize(audio_file, whisper_segs):
-    diarizer = sD()
+    diarizer = sDi()
     segs = diarizer.diarize(audio_file)
     speakers = assign_segments_speakers(whisper_segs, segs)
     return speakers

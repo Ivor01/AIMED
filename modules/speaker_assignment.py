@@ -26,6 +26,20 @@ def assign_speaker(whisper_seg, diar_segments):
             probable_speaker = seg["speaker"]
 
     return probable_speaker
+#Temporary assigning roles, no AI 
+def assign_roles(speakers_by_segments, whisper_segments):
+    speakers_list = dict.fromkeys(speakers_by_segments)
+    for speaker, segment in zip(speakers_by_segments, whisper_segments):
+        if segment.text.rstrip().endswith("?"):
+            speakers_list[speaker] = "Liječnik"
+            break
+    for key in speakers_list:
+        if not speakers_list[key]:
+            speakers_list[key] = "Pacijent"
+
+    role_assigned_speakers = [speakers_list[speaker] for speaker in speakers_by_segments]
+    return role_assigned_speakers 
+
 
 # For every whisper segment appends speaker to list of speakers by order of appearing
 def assign_segments_speakers(whisper_segs, diar_segs):
@@ -39,4 +53,5 @@ def assign_segments_speakers(whisper_segs, diar_segs):
     ## END
     for seg in whisper_segs:
         speakers.append(assign_speaker(seg, diar_segs))
+    speakers = assign_roles(speakers, whisper_segs)
     return speakers
