@@ -14,6 +14,7 @@ import time
 import modules.promptBuilder as pB
 import modules.noiseReduce as nR
 from modules.diarizer import SpeakerDiarizer as sD
+from modules.speaker_assignment import assign_segments_speakers
 
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
@@ -64,16 +65,16 @@ def format_time(seconds):
 def normalize_text(text):
     return text.replace("  ", " ").strip()
 
-def transcript_to_text(segments):
+def transcript_to_text(segments, speakers):
     lines = []
-    for seg in segments:
+    for seg, speaker in zip(segments,speakers):
         start = format_time(seg.start)
         end = format_time(seg.end)
         text = seg.text.strip()
         for wrong, correct in TERM_CORRECTIONS.items():
             text = text.replace(wrong, correct)
         text = normalize_text(text)
-        lines.append(f"[{start} → {end}] {text}")
+        lines.append(f"[{start} → {end}] {speaker} : {text}")
     transcript_text = "\n".join(lines)
     return transcript_text
 
@@ -96,10 +97,11 @@ def transcribe_file(audio_path, prompt):
     elapsed_text = f"Vrijeme transkripcije: {elapsed:.2f} sekundi"
     return segments, elapsed_text
 # ---------------- DIARIZATION --------------------
-def diarize(audio_file):
+def diarize(audio_file, whisper_segs):
     diarizer = sD()
     segs = diarizer.diarize(audio_file)
-    return segs
+    speakers = assign_segments_speakers(whisper_segs, segs)
+    return speakers
 # ---------------- AUDIO RECORDING ----------------
 def record_thread():
     def callback(indata, frames, time_info, status):
@@ -222,14 +224,15 @@ def transkribiraj_manual():
     name, ext = os.path.splitext(filename)
     audio_file = name + "_cleaned" + ext
     transcript, elapsed = transcribe_file(audio_file,initial_prompt)
+    #transcript je generator pa ce ga call u metodu potrositi
+    transcript = list(transcript)
     #Kraj modula 2 - provesti dijarizaciju prije transkripta
     #Modul 3 
-    diarized_segs  = diarize(audio_file)
-    print(diarized_segs)
+    speakers_ordered  = diarize(audio_file, transcript)
     #Nakon dijarizacije itd pretvaramo segmente u tekst za ispis
     os.remove(audio_file)
     uploaded_file = None
-    transcript = transcript_to_text(transcript)
+    transcript = transcript_to_text(transcript,speakers_ordered)
     transcript_box.delete("1.0", tk.END)
     transcript_box.insert(tk.END, transcript)
     status_label.config(text=elapsed)
