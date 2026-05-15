@@ -15,7 +15,7 @@ import modules.promptBuilder as pB
 import modules.noiseReduce as nR
 from modules.diarizer import SpeakerDiarizer as sDi
 from modules.speaker_assignment import assign_segments_speakers
-
+from modules.medical_understanding import MedicalUnderstander as mU
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
 FG_COLOR = "#ffffff"
@@ -33,7 +33,7 @@ pauza = False
 snimanje_vrijeme = 0
 timer_id = None
 RECORDING = {"active": False, "paused": False, "tempfile": None, "data": []}
-transcript_text = ""
+transcript_json = []
 uploaded_file = None
 
 # ---------------- WHISPER MODEL ----------------
@@ -78,9 +78,19 @@ def transcript_to_text(segments, speakers):
     transcript_text = "\n".join(lines)
     return transcript_text
 
+def transcript_to_json(transcript, ordered_speakers):
+    structured_segments = []
+    for i, (segment, speaker) in enumerate(zip(transcript, ordered_speakers),start=1):
+        structured_segments.append({
+            "utterance_id":i,
+            "speaker": speaker,
+            "start": segment.start,
+            "end": segment.end,
+            "text": segment.text.strip()
+        })
+    return structured_segments
 
 def transcribe_file(audio_path, prompt):
-    global transcript_text
     if audio_path is None:
         return "", ""
     samples, sr = librosa.load(audio_path, sr=TARGET_SR, mono=True)
@@ -211,7 +221,7 @@ def spremi_dokument():
     messagebox.showinfo("Spremljeno", f"Dokument spremljen kao:\n{filename}")
 
 def transkribiraj_manual():
-    global uploaded_file
+    global uploaded_file, transcript_json
     prompt_vars = [department_var.get(),theme_var.get()]
     initial_prompt = pB.build_initial_prompt(prompt_vars[0],prompt_vars[1])
     audio_file = get_audio_file()
@@ -232,6 +242,7 @@ def transkribiraj_manual():
     #Nakon dijarizacije itd pretvaramo segmente u tekst za ispis
     os.remove(audio_file)
     uploaded_file = None
+    transcript_json = transcript_to_json(transcript, speakers_ordered)
     transcript = transcript_to_text(transcript,speakers_ordered)
     transcript_box.delete("1.0", tk.END)
     transcript_box.insert(tk.END, transcript)
@@ -239,7 +250,14 @@ def transkribiraj_manual():
     # Omogući dokument gumbi nakon transkripta
     gen_btn.config(state="normal")
     save_btn.config(state="normal")
+    analysis_btn.config(state="normal")
 
+# ------------- MEDICAL UNDERSTANDING -----------
+def analiziraj_dokument():
+    understander = mU("extractor_temp")
+    understood = understander.understand(transcript_json)
+
+    
 # ---------------- GUI ----------------
 root = tk.Tk()
 root.title("Medicinski diktat – GUI prototip")
@@ -298,7 +316,7 @@ tk.Label(frame_pacijent, text="Tema:", bg=BG_COLOR, fg=FG_COLOR).grid(row=1, col
 
 
 datum_label = tk.Label(frame_pacijent, text=datetime.now().strftime("%d.%m.%Y"), bg=BG_COLOR, fg=FG_COLOR)
-datum_label.grid(row=0, column=6, padx=10)
+datum_label.grid(row=0, column=7, padx=10)
 
 # --- Diktat gumbi ---
 frame_diktat = tk.Frame(root, bg=BG_COLOR)
@@ -321,6 +339,9 @@ gen_btn.pack(side="left", padx=5)
 
 save_btn = tk.Button(frame_diktat, text="SPREMI DOKUMENT", bg=BTN_YELLOW, fg="black", command=spremi_dokument, state="disabled")
 save_btn.pack(side="left", padx=5)
+
+analysis_btn = tk.Button(frame_diktat, text="ANALIZIRAJ", bg=BTN_RED, fg="black", command=analiziraj_dokument, state="disabled")
+analysis_btn.pack(side="left", padx=5)
 
 status_label = tk.Label(frame_diktat, text="Status: spremno", bg=BG_COLOR, fg=FG_COLOR)
 status_label.pack(side="left", padx=10)
