@@ -254,7 +254,7 @@ def transkribiraj_manual():
 
 # ------------- MEDICAL UNDERSTANDING -----------
 def analiziraj_dokument():
-    understander = mU("extractor_temp")
+    understander = mU("extractor_temp ")
     understood = understander.understand(transcript_json)
 
     
