@@ -83,7 +83,7 @@ def transcript_to_json(transcript, ordered_speakers):
     for i, (segment, speaker) in enumerate(zip(transcript, ordered_speakers),start=1):
         structured_segments.append({
             "utterance_id":i,
-            "speaker": speaker,
+            "speaker": speaker, 
             "start": segment.start,
             "end": segment.end,
             "text": segment.text.strip()

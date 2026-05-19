@@ -1,0 +1,72 @@
+[
+  {
+    "utterance_id": "utt_1",
+    "speaker": "Pacijent",
+    "start": 0.0,
+    "end": 2.0,
+    "text": "Dobar dan doktore."
+  },
+  {
+    "utterance_id": "utt_2",
+    "speaker": "Liječnik",
+    "start": 2.0,
+    "end": 4.0,
+    "text": "Dobar dan."
+  },
+  {
+    "utterance_id": "utt_3",
+    "speaker": "Liječnik",
+    "start": 4.0,
+    "end": 6.0,
+    "text": "Izvolite sjesti."
+  },
+  {
+    "utterance_id": "utt_4",
+    "speaker": "Liječnik",
+    "start": 6.0,
+    "end": 8.0,
+    "text": "Što vas dovodi ovamo?"
+  },
+  {
+    "utterance_id": "utt_5",
+    "speaker": "Pacijent",
+    "start": 8.0,
+    "end": 12.0,
+    "text": "Evo, boli me koljeno već dva tjedna s prekidima."
+  },
+  {
+    "utterance_id": "utt_6",
+    "speaker": "Liječnik",
+    "start": 14.0,
+    "end": 16.0,
+    "text": "Jeste li korisili kakve lijekove za to?"
+  },
+  {
+    "utterance_id": "utt_7",
+    "speaker": "Pacijent",
+    "start": 16.0,
+    "end": 18.0,
+    "text": "Samo Ibuprofen."
+  },
+  {
+    "utterance_id": "utt_8",
+    "speaker": "Liječnik",
+    "start": 20.0,
+    "end": 22.0,
+    "text": "A je ste li radili kakve vježbe za to?"
+  },
+  {
+    "utterance_id": "utt_9",
+    "speaker": "Pacijent",
+    "start": 22.0,
+    "end": 24.0,
+    "text": "Nisam."
+  },
+  {
+    "utterance_id": "utt_10",
+    "speaker": "Liječnik",
+    "start": 24.0,
+    "end": 26.0,
+    "text": "U redu, sada ćemo vam popisati terapiju i preporučio bih vam vježbe za zglobove"
+  }
+]
