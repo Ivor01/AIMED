@@ -15,7 +15,7 @@ import modules.promptBuilder as pB
 import modules.noiseReduce as nR
 from modules.diarizer import SpeakerDiarizer as sDi
 from modules.speaker_assignment import assign_segments_speakers
-from modules.medical_understanding import MedicalUnderstander as mU
+from modules.medical_understanding.medical_understander import MedicalUnderstander as mU
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
 FG_COLOR = "#ffffff"
@@ -82,7 +82,7 @@ def transcript_to_json(transcript, ordered_speakers):
     structured_segments = []
     for i, (segment, speaker) in enumerate(zip(transcript, ordered_speakers),start=1):
         structured_segments.append({
-            "utterance_id":i,
+            "utterance_id": f"utt_{i}",
             "speaker": speaker, 
             "start": segment.start,
             "end": segment.end,
