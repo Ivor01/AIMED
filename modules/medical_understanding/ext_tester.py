@@ -82,7 +82,7 @@ def main() -> int:
         extractor = MedicalExtractor(model=args.model)
         response = extractor.extract(utterances)
 
-        response_dict = response.model_dump()
+        response_dict = response# = response.model_dump()
 
         response_json = json.dumps(
             response_dict,
@@ -95,7 +95,7 @@ def main() -> int:
             output_path.write_text(response_json, encoding="utf-8")
             print(f"Response saved to: {output_path}")
         else:
-            print(response_json)
+            print(type(response_dict))
 
         return 0
 

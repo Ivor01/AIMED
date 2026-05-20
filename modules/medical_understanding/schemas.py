@@ -6,11 +6,11 @@ Uloga = Literal["Liječnik","Pacijent","Ostalo"]
 
 Kategorija = Literal[
     "simptom",
-    "nalazi",
+    "nalaz",
     "dijagnoze",
     "lijekovi",
     "plan",
-    "negacije",
+    #"negacije",
     "nesigurnost",
     "temporalnost"
 ]
@@ -65,11 +65,11 @@ class MedicalEntity(BaseModel):
     speaker: Uloga = "nepoznato"
     #experiencer: str = "pacijent"
     
-    #duration: Optional[str] = None
-    #severity: Optional[str] = None
-    #body_location: Optional[str] = None
-    #value: Optional[str] = None
-    #unit: Optional[str] = None
+    duration: Optional[str] = None
+    severity: Optional[str] = None
+    body_location: Optional[str] = None
+    value: Optional[str] = None
+    unit: Optional[str] = None
 
     evidence: str
     utterance_id: str

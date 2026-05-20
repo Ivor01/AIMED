@@ -23,7 +23,7 @@ class MedicalExtractor:
             },
             ], text_format = MedicalUnderstandingOutput
         )
-        return response.output_parsed
+        return (response.output_parsed).model_dump()
     def segs_to_text(self,segs):
         lines = []
         for seg in segs:
