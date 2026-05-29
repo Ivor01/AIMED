@@ -54,6 +54,13 @@ class InputUtterance(BaseModel):
     end: Optional[float] = None
     text: str
 
+class MainReason(BaseModel):
+    text: str = Field(description="Originalni izraz iz transkripta.")
+    normalized_name: str = Field(description="Normalizirani medicinski pojam.")
+
+    evidence: str
+    utterance_id: str
+
 class MedicalEntity(BaseModel):
     text: str = Field(description="Originalni izraz iz transkripta.")
     normalized_name: str = Field(description="Normalizirani medicinski pojam.")
@@ -92,6 +99,7 @@ class WarningItem(BaseModel):
 
 
 class MedicalUnderstandingOutput(BaseModel):
+    reason: MainReason
     entities: list[MedicalEntity]
     plan: list[TipPlana]
     warnings: list[WarningItem] = []

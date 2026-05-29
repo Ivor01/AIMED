@@ -22,6 +22,7 @@ USER_PROMPT_TEMPLATE = """
 Iz sljedeće medicinske konzultacije izdvoji strukturirane medicinske entitete s njihovim atributima
 
 Izdvoji:
+- razlog dolaska
 - simptome
 - nalaze,
 - dijagnoze,
@@ -31,18 +32,19 @@ Izdvoji:
 - nesigurnost,
 - temporalnost
 
-Pravila za medicinske:
-1. Ako je entitet negiran koristi atribut "negated"
-2. Ako entitet nije siguran koristi "nesigurno","vjerojatno" i "malo vjerojatno"
-3. Ako je nešto tek planirano koristi "planirano"
-4. Ako je plan uvjetovan koristi "uvjetno_plan"
-5. Ako je bolest spomenuta u povijesti pacijent koristi "povijest_bolesti"
-6. Ako se bolest odnosi na člana obitelji koristi "obiteljska_anamneza"
-7. Evidence mora biti najkrači citat koji podržava samo taj entitet.
-8. Ne koristi cijelu rečenicu kao evidence ako ona sadrži više tvrdnji.
-9. Ne izmišljaj vrijednosti, entitete ni atribute entiteta.
-10. Ako za neki atribut pronađenog entitet ne pronađeš vrijednost zadaj je kao "NA".
-11. Koristi postojeće utterance_id iz ulaza.
+Pravila za medicinske entitete:
+1. Razlog dolaska je primarni simptom i može biti samo jedan
+2. Ako je entitet negiran koristi atribut "negated"
+3. Ako entitet nije siguran koristi "nesigurno","vjerojatno" i "malo vjerojatno"
+4. Ako je nešto tek planirano koristi "planirano"
+5. Ako je plan uvjetovan koristi "uvjetno_plan"
+6. Ako je bolest spomenuta u povijesti pacijent koristi "povijest_bolesti"
+7. Ako se bolest odnosi na člana obitelji koristi "obiteljska_anamneza"
+8. Evidence mora biti najkrači citat koji podržava samo taj entitet.
+9. Ne koristi cijelu rečenicu kao evidence ako ona sadrži više tvrdnji.
+10. Ne izmišljaj vrijednosti, entitete ni atribute entiteta.
+11. Ako za neki atribut pronađenog entitet ne pronađeš vrijednost zadaj je kao "NA".
+12. Koristi postojeće utterance_id iz ulaza.
 
 Konzultacija:
 {transcript}

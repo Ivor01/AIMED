@@ -1,4 +1,10 @@
 {
+  "reason": {
+    "text": "boli me koljeno",
+    "normalized_name": "bol u koljenu",
+    "evidence": "boli me koljeno",
+    "utterance_id": "utt_5"
+  },
   "entities": [
     {
       "text": "boli me koljeno",
@@ -8,7 +14,7 @@
       "sigurnost": "sigurno",
       "temporalnost": "sadašnje",
       "speaker": "Pacijent",
-      "duration": "dva tjedna",
+      "duration": "dva tjedna s prekidima",
       "severity": "NA",
       "body_location": "koljeno",
       "value": "NA",
@@ -33,19 +39,19 @@
       "utterance_id": "utt_7"
     },
     {
-      "text": "nisam radio nikakve vježbe",
-      "normalized_name": "ne izvođenje vježbi",
-      "kategorija": "negacije",
+      "text": "Nisam (radio vježbe)",
+      "normalized_name": "vježbe za koljeno",
+      "kategorija": "plan",
       "status": "negated",
       "sigurnost": "sigurno",
-      "temporalnost": "sadašnje",
+      "temporalnost": "prošlost",
       "speaker": "Pacijent",
       "duration": "NA",
       "severity": "NA",
-      "body_location": "NA",
+      "body_location": "koljeno",
       "value": "NA",
       "unit": "NA",
-      "evidence": "Nisam.",
+      "evidence": "Nisam",
       "utterance_id": "utt_9"
     }
   ],
@@ -66,4 +72,4 @@
     }
   ],
   "warnings": []
-} 
+}

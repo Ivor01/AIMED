@@ -54,9 +54,9 @@ def main() -> int:
         raw_segments = load_segments_from_json(args.input_file)
         
         summarizer = MedicalSummarizer()
-        #response = extractor.extract(utterances)
-        print(summarizer.summarize(raw_segments))
-
+        structured, narrated = summarizer.summarize(raw_segments)
+        print(structured)
+        print(narrated)
         return 0
 
     except Exception as exc:

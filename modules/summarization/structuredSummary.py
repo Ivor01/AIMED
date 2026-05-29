@@ -1,6 +1,7 @@
 class StructuredSummaryGenerator:
     def structurize(self, entities):
         med_entities = entities["entities"]
+        reason = entities["reason"]["normalized_name"]
         symptoms = self.get_symptoms(med_entities)
         history= self.get_history(med_entities)
         #family_history, family_history_neg = self.get_history(med_entities)
@@ -13,12 +14,13 @@ class StructuredSummaryGenerator:
         for neg_kat, neg_val in negateds.items():
             iskljuceno+= f"{str(neg_kat).capitalize()}: "
             for val in neg_val:
-                iskljuceno+= f"{str(val)};"
+                iskljuceno+= f"{str(val)}; "
             iskljuceno+= "\n"
-            
-        structured_summary = f"Prisutne tegobe:\n{symptoms}\nNalazi:\n{findings}\nPovijest bolesti:\n{history}\nTerapije - trenutne:\n- {", ".join(medicine_curr)}\n"
+        structured_summary = f"Razlog dolaska: {reason}\n\n"  
+        structured_summary += f"Prisutne tegobe:\n{symptoms}\nNalazi:\n{findings}\nPovijest bolesti:\n{history}\nTerapije - trenutne:\n- {", ".join(medicine_curr)}\n"
         structured_summary += f"Terapije - prijašnje:\n- {", ".join(medicine_prev)}\n\nIsključeno:\n- {iskljuceno}"
         return structured_summary
+    
     def get_symptoms(self, med_entities):
         symptoms = ""
         symptoms_neg = ""
