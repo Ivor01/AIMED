@@ -11,10 +11,10 @@ import torch
 from faster_whisper import WhisperModel
 import librosa
 import time
-import modules.promptBuilder as pB
-import modules.noiseReduce as nR
-from modules.diarizer import SpeakerDiarizer as sDi
-from modules.speaker_assignment import assign_segments_speakers
+import modules.preprocessing.promptBuilder as pB
+import modules.preprocessing.noiseReduce as nR
+from modules.diarization.diarizer import SpeakerDiarizer as sDi
+from modules.diarization.speaker_assignment import assign_segments_speakers
 from modules.medical_understanding.medical_understander import MedicalUnderstander as mU
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
