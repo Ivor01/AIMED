@@ -1,0 +1,36 @@
+from internalEHR import internalEHRbuilder
+
+class ElectronicRecorder:
+    def __init__(self):
+        pass
+    def record(self, input_metadata, med_entities, medical_summary):
+        ###OBRADA ulaznih arg u korisne dict ili sl
+        
+        ####
+        interalEHR = internalEHRbuilder.build(input_metadata, med_entities, medical_summary)
+        print(interalEHR)
+        """ struktura 
+        input_metadata ={
+            "encounter":{
+                "type":... ,
+                "date":... ,
+                "department":... 
+            }
+            "patientID":{
+                "id":...,
+                "age":...,
+                "sex":...
+            }
+            "practitioner":{
+                "id":...,
+                "name":
+            }
+        }
+
+        med_entities ={
+            "reason":{}
+            "entities":[]
+            "plan":[]
+            "warnings"[]
+        }
+        """

@@ -9,7 +9,6 @@ Kategorija = Literal[
     "nalaz",
     "dijagnoze",
     "lijekovi",
-    "plan",
     #"negacije",
     "nesigurnost",
     "temporalnost"
