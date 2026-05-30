@@ -1,8 +1,8 @@
 import json
 from openai import OpenAI
 
-from prompts import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE
-from schemas import StyledMedicalNote
+from modules.summarization.prompts import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE
+from modules.summarization.schemas import StyledMedicalNote
 
 class NarratedSummaryGenerator:
     def __init__(self, model = "gpt-4.1-mini"):

@@ -24,7 +24,7 @@ def assign_speaker(whisper_seg, diar_segments):
         if new_ov > probable_overlap:
             probable_overlap = new_ov
             probable_speaker = seg["speaker"]
-
+    
     return probable_speaker
 #Temporary assigning roles, no AI 
 def assign_roles(speakers_by_segments, whisper_segments):
@@ -44,13 +44,6 @@ def assign_roles(speakers_by_segments, whisper_segments):
 # For every whisper segment appends speaker to list of speakers by order of appearing
 def assign_segments_speakers(whisper_segs, diar_segs):
     speakers = []
-    #TESTING
-    text = ""
-    current_file = Path(__file__).resolve()
-    json_path = current_file.parent.parent /"dev" / "dis_temp.json"
-    with open(json_path, "r", encoding="utf-8") as file:
-        diar_segs = json.load(file)
-    ## END
     for seg in whisper_segs:
         speakers.append(assign_speaker(seg, diar_segs))
     speakers = assign_roles(speakers, whisper_segs)

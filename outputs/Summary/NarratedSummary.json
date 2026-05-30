@@ -1,0 +1,9 @@
+{
+    "summary": "Pacijent se žali na bol u koljenu koja traje dva tjedna s prekidima. Nije radno nesposoban. Trenutačno uzima Ibuprofen. Planira se propisivanje dodatne terapije.",
+    "used_facts": [
+        "utt_5",
+        "utt_7",
+        "utt_9",
+        "utt_10"
+    ]
+}

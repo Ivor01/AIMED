@@ -1,4 +1,4 @@
-from extractor import MedicalExtractor
+from modules.medical_understanding.extractor import MedicalExtractor
 
 
 class MedicalUnderstander:
@@ -9,7 +9,7 @@ class MedicalUnderstander:
         #self.merger = MedicalEntityMerger()
         #self.safety_validator = MedicalSafetyValidator()
 
-    def understand(self, diarized_transcript: list[dict]) -> dict: #-> znači očekujemo da funkcija vraća objekt dict 
+    def understand(self, diarized_transcript) -> dict: #-> znači očekujemo da funkcija vraća objekt dict 
 
         #utterances = self.input_validator.validate(input_segments)
         extracted = self.extractor.extract(diarized_transcript)
@@ -22,4 +22,4 @@ class MedicalUnderstander:
         #    utterances=utterances,
         #)
         
-        return "TEMP"
+        return extracted

@@ -1,0 +1,68 @@
+{
+    "reason": {
+        "text": "boli me koljeno veži dva tjedna s prekidima",
+        "normalized_name": "bol u koljenu",
+        "evidence": "boli me koljeno veži dva tjedna s prekidima",
+        "utterance_id": "utt_5"
+    },
+    "entities": [
+        {
+            "text": "boli me koljeno veži dva tjedna s prekidima",
+            "normalized_name": "bol u koljenu",
+            "kategorija": "simptom",
+            "status": "sadašnje",
+            "sigurnost": "sigurno",
+            "temporalnost": "sadašnje",
+            "speaker": "Liječnik",
+            "duration": "dva tjedna s prekidima",
+            "severity": "NA",
+            "body_location": "koljeno",
+            "value": "NA",
+            "unit": "NA",
+            "evidence": "boli me koljeno veži dva tjedna s prekidima",
+            "utterance_id": "utt_5"
+        },
+        {
+            "text": "Ibuprofen",
+            "normalized_name": "Ibuprofen",
+            "kategorija": "lijekovi",
+            "status": "sadašnje",
+            "sigurnost": "sigurno",
+            "temporalnost": "sadašnje",
+            "speaker": "Liječnik",
+            "duration": "NA",
+            "severity": "NA",
+            "body_location": "NA",
+            "value": "NA",
+            "unit": "NA",
+            "evidence": "Samo Ibuprofen",
+            "utterance_id": "utt_7"
+        },
+        {
+            "text": "Nisam",
+            "normalized_name": "ne radna",
+            "kategorija": "simptom",
+            "status": "negated",
+            "sigurnost": "sigurno",
+            "temporalnost": "sadašnje",
+            "speaker": "Liječnik",
+            "duration": "NA",
+            "severity": "NA",
+            "body_location": "NA",
+            "value": "NA",
+            "unit": "NA",
+            "evidence": "Nisam",
+            "utterance_id": "utt_9"
+        }
+    ],
+    "plan": [
+        {
+            "type": "TEMP",
+            "name": "popisati terapiju",
+            "status": "planirano",
+            "evidence": "sada ćemo vam popisati terapiju",
+            "utterance_id": "utt_10"
+        }
+    ],
+    "warnings": []
+}

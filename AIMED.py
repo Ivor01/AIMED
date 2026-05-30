@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 import tkinter as tk
 from tkinter import messagebox, ttk, filedialog
 from datetime import datetime
@@ -16,6 +18,7 @@ import modules.preprocessing.noiseReduce as nR
 from modules.diarization.diarizer import SpeakerDiarizer as sDi
 from modules.diarization.speaker_assignment import assign_segments_speakers
 from modules.medical_understanding.medical_understander import MedicalUnderstander as mU
+from modules.summarization.medical_summarizer import MedicalSummarizer
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
 FG_COLOR = "#ffffff"
@@ -35,6 +38,8 @@ timer_id = None
 RECORDING = {"active": False, "paused": False, "tempfile": None, "data": []}
 transcript_json = []
 uploaded_file = None
+
+medical_entities = []
 
 # ---------------- WHISPER MODEL ----------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -89,6 +94,22 @@ def transcript_to_json(transcript, ordered_speakers):
             "text": segment.text.strip()
         })
     return structured_segments
+
+def save_dict_to_json(module, data: dict, file_name: str) -> None:
+
+    # Make sure the file has .json extension
+    if not file_name.endswith(".json"):
+        file_name += ".json"
+
+    output_dir = Path("outputs/" + module)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    file_path = output_dir / file_name
+
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+    
+    return file_path
 
 def transcribe_file(audio_path, prompt):
     if audio_path is None:
@@ -254,9 +275,39 @@ def transkribiraj_manual():
 
 # ------------- MEDICAL UNDERSTANDING -----------
 def analiziraj_dokument():
-    understander = mU("extractor_temp ")
-    understood = understander.understand(transcript_json)
+    global medical_entities
+    if transcript_json is None:
+        messagebox.showwarning("Greška", "ERROR: Missing transcript for analysis.")
+        return
+    elif not transcript_box.get("1.0", tk.END).strip():
+        messagebox.showwarning("Greška", "Prvo transkribiraj audio!")
+        return
+    understander = mU()
+    medical_entities = understander.understand(transcript_json)
 
+    if medical_entities is not None:
+        path = str(save_dict_to_json("MedicalUnderstanding", medical_entities, "MedicalUnderstandingOutput"))
+        dokument_box.delete("1.0", tk.END)
+        dokument_box.insert(tk.END, f"Uspješno provedeno medicinsko razumijevanje entiteta u transkriptu i spremljeno u {path}")
+    
+
+# ---------------- MEDICAL SUMMARY -----------
+def stvori_sazetak():
+    summarizer = MedicalSummarizer()
+    if transcript_json is None:
+        messagebox.showwarning("Greška", "ERROR: Missing transcript for analysis.")
+        return
+    elif not transcript_box.get("1.0", tk.END).strip():
+        messagebox.showwarning("Greška", "Prvo transkribiraj audio!")
+        return
+    if medical_entities is None:
+        analiziraj_dokument()
+    structured_summary, narrated_summary = summarizer.summarize(medical_entities)
+    path = save_dict_to_json("Summary", narrated_summary, "NarratedSummary")
+    narrated_summary = narrated_summary["summary"]
+    summary = structured_summary + "\n" + narrated_summary
+    dokument_box.delete("1.0", tk.END)
+    dokument_box.insert(tk.END, f"Uspješno provedeno sumiranje transkripta, dokazi spremljeni u {path}\n{summary}")
     
 # ---------------- GUI ----------------
 root = tk.Tk()
@@ -334,7 +385,7 @@ upload_btn.pack(side="left", padx=5)
 transcribe_btn = tk.Button(frame_diktat, text="TRANSKRIBIRAJ", bg=BTN_YELLOW, fg="black", command=transkribiraj_manual)
 transcribe_btn.pack(side="left", padx=5)
 
-gen_btn = tk.Button(frame_diktat, text="GENERIRAJ DOKUMENT", bg=BTN_BLUE, fg="white", command=generiraj_dokument, state="disabled")
+gen_btn = tk.Button(frame_diktat, text="GENERIRAJ DOKUMENT", bg=BTN_BLUE, fg="white", command=stvori_sazetak, state="disabled")
 gen_btn.pack(side="left", padx=5)
 
 save_btn = tk.Button(frame_diktat, text="SPREMI DOKUMENT", bg=BTN_YELLOW, fg="black", command=spremi_dokument, state="disabled")

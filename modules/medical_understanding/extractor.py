@@ -1,7 +1,9 @@
+import json
+
 from openai import OpenAI
 
-from schemas import MedicalUnderstandingOutput, InputUtterance
-from prompts import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE
+from modules.medical_understanding.schemas import MedicalUnderstandingOutput, InputUtterance
+from modules.medical_understanding.prompts import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE
 
 class MedicalExtractor:
     def __init__(self, model = "gpt-4.1-mini"):
@@ -28,8 +30,8 @@ class MedicalExtractor:
         lines = []
         for seg in segs:
             lines.append(
-                f"utterance_id:{seg.utterance_id} | speaker:{seg.speaker} |"
-                f"start-end:{seg.start}-{seg.end} text: {seg.text}"
+                f"utterance_id:{seg["utterance_id"]} | speaker:{seg["speaker"]} |"
+                f"start-end:{seg["start"]}-{seg["end"]} text: {seg["text"]}"
             )
 
         return "\n".join(lines)
