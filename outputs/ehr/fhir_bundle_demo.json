@@ -1,0 +1,55 @@
+{
+  "resourceType": "Bundle",
+  "type": "document",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Composition",
+        "status": "preliminary",
+        "title": "AI generirani klinički zapis",
+        "date": "2026-05-30T03:00:39",
+        "subject": {
+          "reference": "Patient/demo-patient-001"
+        },
+        "encounter": {
+          "display": "ambulantne_konzultacije"
+        },
+        "author": [
+          {
+            "display": "dr. Demo Liječnik"
+          }
+        ],
+        "section": [
+          {
+            "title": "Subjective",
+            "text": {
+              "status": "generated",
+              "div": "<div><ul><li>bol u koljenu (sadašnje) - boli me koljeno</li><li>ibuprofen (sadašnje) - Pacijent navodi temperaturu do 38.2 °C zadnja dva dana.</li></ul></div>"
+            }
+          },
+          {
+            "title": "Objective",
+            "text": {
+              "status": "generated",
+              "div": "<div>Nema podataka.</div>"
+            }
+          },
+          {
+            "title": "Assessment",
+            "text": {
+              "status": "generated",
+              "div": "<div>Nema podataka.</div>"
+            }
+          },
+          {
+            "title": "Plan",
+            "text": {
+              "status": "generated",
+              "div": "<div><ul><li>{'type': 'TEMP', 'name': 'popisati terapiju', 'status': 'planirano', 'evidence': 'sada ćemo vam popisati terapiju', 'utterance_id': 'utt_10'}</li></ul></div>"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

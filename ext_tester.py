@@ -6,7 +6,7 @@ from modules.medical_understanding.schemas import (
     MedicalEntity,
     TipPlana,
 )
-
+from modules.electronicRecords.eRecorder import ElectronicRecorder
 
 def create_example_input_metadata() -> dict:
     """
@@ -118,25 +118,9 @@ def main() -> None:
     med_entities = create_example_med_entities()
     medical_summary = create_example_medical_summary()
 
-    builder = EHRBuilder()
-
-    try:
-        ehr_record = builder.build(
-            frontend_input=input_metadata,
-            medical_understanding=med_entities,
-            medical_summary=medical_summary,
-        )
-
-        print("\n=== INTERNAL EHR RECORD ===\n")
-        print(ehr_record.model_dump_json(indent=2, ensure_ascii=False))
-
-    except ValidationError as error:
-        print("\n=== VALIDATION ERROR ===\n")
-        print(error)
-
-    except Exception as error:
-        print("\n=== ERROR ===\n")
-        print(f"{type(error).__name__}: {error}")
+    recorder = ElectronicRecorder()
+    recorder.record(input_metadata,med_entities,medical_summary)
+    
 
 
 if __name__ == "__main__":
