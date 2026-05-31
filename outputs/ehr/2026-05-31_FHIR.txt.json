@@ -1,0 +1,55 @@
+{
+    "resourceType": "Bundle",
+    "type": "document",
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Composition",
+                "status": "preliminary",
+                "title": "AI generirani klinički zapis",
+                "date": "2026-05-31T23:23:26",
+                "subject": {
+                    "reference": "Patient/"
+                },
+                "encounter": {
+                    "display": "Opće"
+                },
+                "author": [
+                    {
+                        "display": ""
+                    }
+                ],
+                "section": [
+                    {
+                        "title": "Subjective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Nema podataka.</div>"
+                        }
+                    },
+                    {
+                        "title": "Objective",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div><ul><li>Ibuprofen (sadašnje) - Samo Ibuprofen</li></ul></div>"
+                        }
+                    },
+                    {
+                        "title": "Assessment",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div>Nema podataka.</div>"
+                        }
+                    },
+                    {
+                        "title": "Plan",
+                        "text": {
+                            "status": "generated",
+                            "div": "<div><ul><li>{'type': 'TEMP', 'name': 'popisati terapiju', 'status': 'planirano', 'evidence': 'sada ćemo vam popisati terapiju', 'utterance_id': 'utt_10'}</li></ul></div>"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

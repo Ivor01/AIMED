@@ -18,9 +18,9 @@ SourceType = Literal[
 ]
 
 EncounterType = Literal[
-    "ambulantne_konzultacije",
-    "medicinske_bilješke",
-    "opće"
+    "Konzultacije",
+    "Bilješke",
+    "Opće"
 ]
 
 class PatientInfo(BaseModel):

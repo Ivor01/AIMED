@@ -1,74 +1,54 @@
 {
   "record_metadata": {
-    "record_id": "ehr-03184249-1a76-4bca-8c20-3ce44d37b81e",
-    "created_at": "2026-05-30T03:00:39",
+    "record_id": "ehr-0331b070-4ff5-460d-ac7c-254edfa663f9",
+    "created_at": "2026-05-31T23:23:26",
     "created_by": "system",
     "schema_version": "1.0"
   },
   "patient": {
-    "patient_id": "demo-patient-001",
-    "age": 52,
+    "patient_id": "",
+    "age": 28,
     "sex": "M",
     "source": "doctor_input"
   },
   "encounter": {
-    "date": "2026-05-30",
-    "type": "ambulantne_konzultacije",
-    "department": "Opća medicina",
-    "reason_for_visit": "Kašalj i povišena temperatura",
+    "date": "31.05.2026",
+    "type": "Opće",
+    "department": "Opća",
+    "reason_for_visit": "bol u koljenu",
     "source": "doctor_input"
   },
   "practitioner": {
-    "practitioner_id": "doctor-001",
-    "name": "dr. Demo Liječnik",
-    "department": "Opća medicina",
+    "practitioner_id": null,
+    "name": "",
+    "department": "Opća",
     "source": "doctor_input"
   },
   "clinical_note": {
     "format": "SOAP",
-    "subjective": [
-      {
-        "data": {
-          "text": "boli me koljeno",
-          "normalized_name": "bol u koljenu",
-          "kategorija": "simptom",
-          "status": "sadašnje",
-          "sigurnost": "sigurno",
-          "temporalnost": "sadašnje",
-          "speaker": "Pacijent",
-          "duration": "3 dana",
-          "severity": "umjereno",
-          "body_location": null,
-          "value": null,
-          "unit": null,
-          "evidence": "boli me koljeno",
-          "utterance_id": "utt-001"
-        },
-        "source": "ai_extracted",
-        "review": "čeka_potvrdu"
-      },
+    "subjective": [],
+    "objective": [
       {
         "data": {
           "text": "Ibuprofen",
-          "normalized_name": "ibuprofen",
+          "normalized_name": "Ibuprofen",
           "kategorija": "lijekovi",
           "status": "sadašnje",
           "sigurnost": "sigurno",
           "temporalnost": "sadašnje",
-          "speaker": "Pacijent",
-          "duration": "2 dana",
-          "severity": null,
-          "body_location": null,
-          "value": "38.2",
-          "unit": "°C",
-          "evidence": "Pacijent navodi temperaturu do 38.2 °C zadnja dva dana.",
-          "utterance_id": "utt-002"
+          "speaker": "Liječnik",
+          "duration": "NA",
+          "severity": "NA",
+          "body_location": "NA",
+          "value": "NA",
+          "unit": "NA",
+          "evidence": "Samo Ibuprofen",
+          "utterance_id": "utt_7"
         },
         "source": "ai_extracted",
         "review": "čeka_potvrdu"
       }
     ],
-    "objective": [],
     "assessment": [],
     "plan": [
       {
@@ -83,6 +63,6 @@
         "review": "čeka_potvrdu"
       }
     ],
-    "summary": "Doktor izvršio pregled."
+    "summary": "Pacijent se žali na kroničnu bol u koljenu koja traje dva tjedna s prekidima. Ne izvještava o radnoj ozljedi u prošlosti. Trenutno koristi Ibuprofen za liječenje. Planirano je propisati terapiju."
   }
 }

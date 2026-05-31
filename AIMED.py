@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import shutil
 import tkinter as tk
 from tkinter import messagebox, ttk, filedialog
 from datetime import datetime
@@ -19,6 +20,7 @@ from modules.diarization.diarizer import SpeakerDiarizer as sDi
 from modules.diarization.speaker_assignment import assign_segments_speakers
 from modules.medical_understanding.medical_understander import MedicalUnderstander as mU
 from modules.summarization.medical_summarizer import MedicalSummarizer
+from modules.electronicRecords.eRecorder import ElectronicRecorder
 # ---------------- BOJE ----------------
 BG_COLOR = "#1e1e1e"
 FG_COLOR = "#ffffff"
@@ -40,6 +42,7 @@ transcript_json = []
 uploaded_file = None
 
 medical_entities = []
+summary = ""
 
 # ---------------- WHISPER MODEL ----------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -95,7 +98,7 @@ def transcript_to_json(transcript, ordered_speakers):
         })
     return structured_segments
 
-def save_dict_to_json(module, data: dict, file_name: str) -> None:
+def save_dict(module, data: dict, file_name, ext) -> None:
 
     # Make sure the file has .json extension
     if not file_name.endswith(".json"):
@@ -127,6 +130,20 @@ def transcribe_file(audio_path, prompt):
     elapsed = time.time() - start_time
     elapsed_text = f"Vrijeme transkripcije: {elapsed:.2f} sekundi"
     return segments, elapsed_text
+
+def get_input_metadata():
+    id = id_entry.get()
+    datum = datum_label["text"]
+    tema = theme_var.get()
+    department = department_var.get()
+    reason = medical_entities["reason"]["normalized_name"]
+    lijecnik = lijecnik_entry.get()
+
+    metadata = {}
+    metadata["patient"] = {"patient_id":id,"age":"28","sex":"M"}
+    metadata["encounter"] = {"date":datum, "type":tema, "department": department, "reason_for_visit": reason}
+    metadata["practitioner"] = {"id":"007","name":lijecnik,"department": department}
+    return metadata
 # ---------------- DIARIZATION --------------------
 def diarize(audio_file, whisper_segs):
     diarizer = sDi()
@@ -227,7 +244,7 @@ Analgetici i mirovanje.
     dokument_box.insert(tk.END, template)
     status_label.config(text="Dokument generiran")
 
-def spremi_dokument():
+"""def spremi_dokument():
     if not dokument_box.get("1.0", tk.END).strip():
         messagebox.showwarning("Greška", "Nema dokumenta za spremiti!")
         return
@@ -239,7 +256,7 @@ def spremi_dokument():
     filename = f"{datetime.now().date()}_{ime}_{prezime}_dijagnoza.txt"
     with open(filename, "w", encoding="utf-8") as f:
         f.write(dokument_box.get("1.0", tk.END))
-    messagebox.showinfo("Spremljeno", f"Dokument spremljen kao:\n{filename}")
+    messagebox.showinfo("Spremljeno", f"Dokument spremljen kao:\n{filename}")"""
 
 def transkribiraj_manual():
     global uploaded_file, transcript_json
@@ -285,14 +302,15 @@ def analiziraj_dokument():
     understander = mU()
     medical_entities = understander.understand(transcript_json)
 
-    if medical_entities is not None:
-        path = str(save_dict_to_json("MedicalUnderstanding", medical_entities, "MedicalUnderstandingOutput"))
+    if len(medical_entities) != 0:
+        path = str(save_dict("MedicalUnderstanding", medical_entities, "MedicalUnderstandingOutput",".json"))
         dokument_box.delete("1.0", tk.END)
         dokument_box.insert(tk.END, f"Uspješno provedeno medicinsko razumijevanje entiteta u transkriptu i spremljeno u {path}")
     
 
 # ---------------- MEDICAL SUMMARY -----------
 def stvori_sazetak():
+    global summary
     summarizer = MedicalSummarizer()
     if transcript_json is None:
         messagebox.showwarning("Greška", "ERROR: Missing transcript for analysis.")
@@ -303,13 +321,42 @@ def stvori_sazetak():
     if len(medical_entities) == 0:
         analiziraj_dokument()
     structured_summary, narrated_summary = summarizer.summarize(medical_entities)
-    path = save_dict_to_json("Summary", narrated_summary, "NarratedSummary")
+    path = save_dict("Summary", narrated_summary, "NarratedSummary",".json")
     narrated_summary = narrated_summary["summary"]
-    summary = structured_summary + "\n" + narrated_summary
+    display_summary = structured_summary + "\n" + narrated_summary
     dokument_box.delete("1.0", tk.END)
-    dokument_box.insert(tk.END, f"Uspješno provedeno sumiranje transkripta, dokazi spremljeni u {path}\n{summary}")
+    dokument_box.insert(tk.END, f"Uspješno provedeno sumiranje transkripta, dokazi spremljeni u {path}\n{display_summary}")
+    summary = narrated_summary
+
+# ---------------- ELECTRONIC RECORDS -------
+def stvori_dokument():
+    dokumenter = ElectronicRecorder()
+    if len(summary) == 0:
+        stvori_sazetak()
+    input_metadata = get_input_metadata()
+    fhir_bundle = dokumenter.record(input_metadata, medical_entities, summary)
+    return fhir_bundle
+
+def spremi_dokument():
+    fhir_bundle = stvori_dokument()
+    file_name = str(datetime.now().date()) + "_FHIR.txt"
+    path = save_dict("EHR", fhir_bundle, file_name,".txt")
     
-# ---------------- GUI ----------------
+    destination_path = filedialog.asksaveasfilename(
+        title="Save file as",
+        initialfile=file_name,
+        defaultextension=".txt",
+        filetypes=[
+            ("All files", "*.*"),
+            ("Text files", "*.txt")
+        ]
+    )
+    
+    shutil.copy2(path, destination_path)
+
+    messagebox.showinfo("Spremljeno", f"Dokument spremljen kao:\n{file_name}")
+
+# ---------------- GUI ----------------------
 root = tk.Tk()
 root.title("Medicinski diktat – GUI prototip")
 root.geometry("1300x750")
