@@ -1,6 +1,5 @@
 class StructuredSummaryGenerator:
     def structurize(self, entities):
-        print(entities)
         med_entities = entities["entities"]
         reason = entities["reason"]["normalized_name"]
         symptoms = self.get_symptoms(med_entities)

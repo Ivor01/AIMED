@@ -2,7 +2,7 @@
     "reason": {
         "text": "boli me koljeno veži dva tjedna s prekidima",
         "normalized_name": "bol u koljenu",
-        "evidence": "boli me koljeno veži dva tjedna s prekidima",
+        "evidence": "boli me koljeno",
         "utterance_id": "utt_5"
     },
     "entities": [
@@ -12,14 +12,14 @@
             "kategorija": "simptom",
             "status": "sadašnje",
             "sigurnost": "sigurno",
-            "temporalnost": "sadašnje",
+            "temporalnost": "kronično",
             "speaker": "Liječnik",
             "duration": "dva tjedna s prekidima",
             "severity": "NA",
             "body_location": "koljeno",
             "value": "NA",
             "unit": "NA",
-            "evidence": "boli me koljeno veži dva tjedna s prekidima",
+            "evidence": "boli me koljeno",
             "utterance_id": "utt_5"
         },
         {
@@ -40,8 +40,8 @@
         },
         {
             "text": "Nisam",
-            "normalized_name": "ne radna",
-            "kategorija": "simptom",
+            "normalized_name": "radna aktivnost zbog bolova u koljenu",
+            "kategorija": "nesigurnost",
             "status": "negated",
             "sigurnost": "sigurno",
             "temporalnost": "sadašnje",

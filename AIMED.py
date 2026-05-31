@@ -300,7 +300,7 @@ def stvori_sazetak():
     elif not transcript_box.get("1.0", tk.END).strip():
         messagebox.showwarning("Greška", "Prvo transkribiraj audio!")
         return
-    if medical_entities is None:
+    if len(medical_entities) == 0:
         analiziraj_dokument()
     structured_summary, narrated_summary = summarizer.summarize(medical_entities)
     path = save_dict_to_json("Summary", narrated_summary, "NarratedSummary")
